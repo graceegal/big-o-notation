@@ -142,3 +142,65 @@ What’s the time complexity of the .pop array method?        -- O(1)
 
 What’s the time complexity of the Object.keys() function?   -- O(n)
 
+
+
+
+
+Further Study»
+
+Write a function called pairSum that takes an array of positive numbers and
+finds the largest sum of two numbers in the array.
+
+
+an easy and clear implementation that is O(n2):
+
+function pairSum(nums) {
+    let highestSum = -Infinity;
+
+    for (let i = 0; i < nums.length; i++) {         == O(n)
+        for (let j = i+1; j < nums.length; j++) {     == O(n)
+            let sum = nums[i] + nums[j];
+                if (sum > highestSum) {
+                    highestSum = sum;
+                }
+        }
+    }
+
+    return highestSum;
+}
+
+Time Complexity: O(n^2)
+
+
+
+
+a solution that is easy to write, relies on a JS array methods, and is O(n log n)
+
+function pairSum(nums) {
+    nums.sort();                                    -- O(n log(n));
+    let highestNum = nums[nums.length-1];
+    let secondHighestNum = nums[nums.length-2];
+    return (highestNum + secondHighestNum);
+}
+
+Time Complexity: O(n log(n))
+
+
+
+a solution that might be harder to find/understand, but is O(n)
+
+function pairSums(nums) {
+    let highestNum = -Infinity;
+    let secondHighestNum = -Infinity;
+
+    for (let i = 0; i < nums.length; i++) {             -- O(n)
+        if (nums[i] >= highestNum) {
+            secondHighestNum = highestNum;
+            highestNum = nums[i];
+        }
+    }
+
+    return (highestNum + secondHighestNum);
+}
+
+Time Complexity: O(n)
